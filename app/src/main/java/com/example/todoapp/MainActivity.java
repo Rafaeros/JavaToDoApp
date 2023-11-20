@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<String> tasks;
     private ListView list;
     private Button button;
-    private ArrayAdapter itemsAdapter;
+    private ArrayAdapter tasksAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +34,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         tasks = new ArrayList<>();
-        itemsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, tasks);
-        list.setAdapter(itemsAdapter);
+        tasksAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, tasks);
+        list.setAdapter(tasksAdapter);
         list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         String itemText = input.getText().toString();
 
         if(!(itemText.equals(""))){
-            itemsAdapter.add(itemText);
+            tasksAdapter.add(itemText);
             input.setText("");
         }
         else{
