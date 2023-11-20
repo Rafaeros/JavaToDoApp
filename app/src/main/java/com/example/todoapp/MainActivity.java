@@ -16,8 +16,8 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private ArrayList<String> tasks;
-    private ListView list;
-    private Button button;
+    private ListView tasksList;
+    private Button addNewTaskButton;
     private ArrayAdapter tasksAdapter;
 
     @Override
@@ -25,18 +25,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        list = findViewById(R.id.taskList);
-        button = findViewById(R.id.addTaskButton);
+        tasksList = findViewById(R.id.taskList);
+        addNewTaskButton = findViewById(R.id.addTaskButton);
 
-        button.setOnClickListener(new View.OnClickListener(){
+        addNewTaskButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View View){
                 additem(View);
             }
         });
         tasks = new ArrayList<>();
         tasksAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, tasks);
-        list.setAdapter(tasksAdapter);
-        list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        tasksList.setAdapter(tasksAdapter);
+        tasksList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 return remove(position);
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         Context context = getApplicationContext();
         Toast.makeText(context,"Tarefa Concluida", Toast.LENGTH_LONG).show();
         tasks.remove(position);
-        itemsAdapter.notifyDataSetChanged();
+        tasksAdapter.notifyDataSetChanged();
         return true;
     }
 
